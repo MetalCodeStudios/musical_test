@@ -78,7 +78,7 @@ async def custom_site():
 
     apk_list = [
         ("web.apk", "web"),
-        ("script.apk", "web")
+        ("script.apk", "script")
     ]
 
     marginx = ux(.020)
@@ -135,7 +135,7 @@ async def custom_site():
     print("Succeeded 1")
 
     # Run main script from "web" package
-    web_main = Path("/data/data/web/main.py")
+    web_main = Path("/data/data/web/assets/main.py")
     print("Succeeded 2")
 
     await TopLevel_async_handler.start_toplevel(platform.shell, console=window.python.config.debug)
