@@ -127,6 +127,8 @@ async def custom_site():
         }
 
         track = platform.window.MM.prepare(apk, json.dumps(cfg))
+        if not track:
+            print(f"Error: Track for {apk} failed to initialize")
         all_tracks[apk] = track
 
     # Wait for all APKs to mount
