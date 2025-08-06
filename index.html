@@ -78,7 +78,7 @@ async def custom_site():
 
     apk_list = [
         ("web.apk", "web"),
-        ("script.apk", "web")
+        ("script.apk", "web/assets")
     ]
 
     marginx = ux(.020)
@@ -128,7 +128,6 @@ async def custom_site():
     # Wait for all APKs to mount
     while not all(track.ready for track in all_tracks.values()):
         pg_bar(all_tracks)
-        print(track)
         await asyncio.sleep(0.1)
 
     # Final progress bar fill
