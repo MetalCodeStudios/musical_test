@@ -95,7 +95,7 @@ async def custom_site():
 
     apk_list = [
         ("web.apk", "web"),
-        ("script.apk", "web")
+        ("script.apk", "web/assets")
     ]
 
     marginx = ux(.020)
@@ -127,7 +127,7 @@ async def custom_site():
 
     for apk, bundle in apk_list:
         appdir = Path(f"/data/data/{bundle}")
-        appdir.mkdir(exist_ok=True)
+        appdir.mkdir(parents=True, exist_ok=True)
 
         cfg = {
             "io": "url",
