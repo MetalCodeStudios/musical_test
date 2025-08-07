@@ -57,6 +57,23 @@ async def custom_site():
     from pathlib import Path
     import embed
     import pygame
+    import shutil
+    import os
+    
+    src = Path("/data/data/script/")
+    dst = Path("/data/data/web/assets/")
+    
+    def copy_all(src_path, dst_path):
+        for root, dirs, files in os.walk(src_path):
+            for file in files:
+                src_file = Path(root) / file
+                rel_path = src_file.relative_to(src_path)
+                dst_file = dst_path / rel_path
+    
+                dst_file.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy(src_file, dst_file)
+
+
 
     platform.document.body.style.background = "#7f0000"
 
@@ -133,6 +150,10 @@ async def custom_site():
     # Final progress bar fill
     pg_bar(all_tracks)
     print("Succeeded 1")
+
+    
+    # After mounting
+    copy_all(Path("/data/data/script"), Path("/data/data/web/assets"))
 
     # Run main script from "web" package
     web_main = Path("/data/data/web/assets/main.py")
